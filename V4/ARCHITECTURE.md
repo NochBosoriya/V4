@@ -635,6 +635,9 @@ cloning engines.
   fingerprint) and story; `match_cast()` recognises characters by voice.
 - `app/core/translation_memory.py` — SQLite TM keyed by (target lang,
   normalised source, gender, series); human fixes beat AI output.
+- `app/core/model_manager.py` file models: FILES {name: (bytes, sha256, urls)}; bytes / sha256 may be
+  tuples of every known good version (`file_versions`; CAM++ was re-exported upstream
+  2026-11: 28281164 / 28281165 bytes, same output).
 - `app/core/publisher.py` — `generate_metadata()`, `YouTube` (OAuth loopback
   + PKCE, resumable upload, default private), `FacebookPage` (resumable).
   When to post (Publish tab, 2026-11-22): Post immediately (YouTube with the
