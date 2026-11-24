@@ -1,0 +1,47 @@
+# RecapStudio — Python 3.13, Windows 10/11.
+#
+#   python -m pip install -r requirements.txt
+#   python fetch_assets.py              # Khmer fonts + ffmpeg into the repo
+#
+# Versions are the ones the app is developed and tested against.
+# GPU / voice-cloning extras (PyTorch, Demucs, speechbrain, OpenVoice,
+# Seed-VC) are in requirements-gpu.txt.
+
+# --- core: needed to launch the app ---------------------------------------
+PySide6==6.12.0
+numpy==2.3.5
+requests==2.34.2
+pillow==13.0.0
+
+# --- features (imported lazily; the app runs without them) ----------------
+# Downloads (DL tab)
+yt-dlp==2026.10.26
+# Speech recognition (no PyTorch needed: CTranslate2 backend)
+faster-whisper==1.2.1
+ctranslate2==4.8.4
+huggingface_hub==2.3.0
+# Chinese misheard-word check compares pinyin (without it, that check is off for Chinese)
+pypinyin==0.55.0
+# Chinese word edges for Deepgram's line splits (without it: particles only)
+jieba==0.42.1
+# Edge TTS: Khmer + 300 preset voices
+edge-tts==7.3.1
+# Khmer text shaping for posters / thumbnails (Pillow here has no RAQM)
+uharfbuzz==0.57.0
+freetype-py==2.5.1
+fonttools==4.67.0
+# Poster inpainting + scene detection
+opencv-contrib-python==4.10.0.84
+# LaMa inpainting and the MDX-Net voice separator. Keep ONE of these two —
+# two onnxruntime packages in one environment break each other:
+onnxruntime==1.31.1          # CPU, any PC
+# onnxruntime-gpu==1.31.1    # NVIDIA CUDA (instead of the line above)
+# Audio analysis
+soundfile==0.14.0
+scipy==1.16.3
+librosa==0.11.0
+psutil==7.2.2
+
+# Poster title OCR (large: ~1 GB with paddlepaddle). Optional.
+# paddlepaddle==3.3.1
+# paddleocr==3.7.0

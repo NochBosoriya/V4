@@ -1,0 +1,38 @@
+# RecapStudio — GPU / voice-cloning extras (install after requirements.txt).
+#
+#   python -m pip install -r requirements-gpu.txt
+#
+# CUDA 13.2 wheels: NVIDIA RTX 20xx / GTX 16xx and newer, including RTX 50xx
+# (which needs CUDA 12.8 or newer). Older cards (GTX 10xx, MX 1xx-3xx): use
+# https://download.pytorch.org/whl/cu126 and torch==2.14.1+cu126 instead.
+# CPU only: delete the --extra-index-url line and the "+cu132" suffix.
+# A CPU torch that is already installed is replaced only with:
+#   python -m pip install --force-reinstall --no-deps torch --index-url https://download.pytorch.org/whl/cu132
+--extra-index-url https://download.pytorch.org/whl/cu132
+torch==2.15.0+cu132
+# speechbrain needs torchaudio: 2.11 is its last release and has no CUDA 13.2
+# build; the small PyPI wheel works with any torch >= 2.11
+torchaudio==2.11.1
+
+# Voice / music separation
+demucs==4.1.0
+
+# Speech recognition (faster-whisper) on an NVIDIA GPU: CTranslate2 ships
+# cuDNN but needs NVIDIA's cuBLAS. 12.9.2.10 is the newest with a Windows
+# wheel; it runs on GTX 900-series cards and newer, RTX 50-series included.
+nvidia-cublas-cu12==12.9.2.10
+
+# --- packages that must be installed with --no-deps -------------------------
+# Their declared pins would downgrade torch / numpy, so pip can't take them
+# from this file. Run these by hand (the Full Dub tab's "Fix selected" button
+# does the same):
+#
+#   python -m pip install --no-deps speechbrain==1.1.2
+#   python -m pip install hyperpyyaml joblib sentencepiece
+#
+#   python -m pip install --no-deps git+https://github.com/myshell-ai/OpenVoice.git
+#   python -m pip install eng_to_ipa inflect unidecode jieba pypinyin cn2an
+#
+#   # Seed-VC (GPL-3, optional, ~3 GB VRAM)
+#   python -m pip install --no-deps seed-vc==0.4.3
+#   python -m pip install munch matplotlib ffmpy flatten_dict importlib_resources randomname tensorboard argbind pyloudnorm markdown2

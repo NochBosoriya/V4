@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# editor / assistant settings (local to this PC)
+.vscode/
+.claude/
+
+# build output (python build_portable.py makes it again)
+V4/dist/
+V4/build/
+
+# ffmpeg / ffprobe: 242 MB each, over GitHub's 100 MB limit;
+# python fetch_assets.py downloads them
+V4/bin/*.exe
+
+# downloaded models and test media
+V4/models/
+V4/Video for test/
+V4/Big test/
+V4/sample video/
+
+# logs
+*.log
